@@ -1,0 +1,60 @@
+server:
+    port: 8082
+    servlet:
+        context-path: /demo
+spring:
+    application:
+        name: my-dubbo-provider-app
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.10.233:3060/web_template?useSSL=false
+        username: root
+        password: defang#root#2018
+        poolPingConnectionsNotUsedFor: 60000
+        removeAbandoned: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        minIdle: 1
+        validationQuery: SELECT 1 FROM DUAL
+        initialSize: 5
+        maxWait: 60000
+        poolPreparedStatements: false
+        filters: stat,wall
+        testOnBorrow: false
+        testWhileIdle: true
+        minEvictableIdleTimeMillis: 300000
+        timeBetweenEvictionRunsMillis: 60000
+        testOnReturn: false
+        maxActive: 50
+        druid:
+            user: admin
+            password: admin
+
+    jpa: 
+        hibernate:
+            ddl-auto: none
+    dubbo:
+        server: true
+        registry: zookeeper://192.168.10.233:2181?backup=192.168.10.233:2182,192.168.10.233:2183
+        provider:
+            port: 20880
+    redis:
+        cluster:
+            max-redirects: 3
+            nodes: 192.168.10.233:6379,192.168.10.233:6380,192.168.10.233:6381,192.168.10.233:6382,192.168.10.233:6383,192.168.10.233:6384
+        database: 0
+        password: defangchaintest
+        pool:
+            max-active: 8
+            max-idle: 8
+            max-wait: -1
+            min-idle: 0
+        ssl: false
+        timeout: 5000
+rocketmq:
+    groupName: DefangTest
+    instanceName: mq-test
+    namesrvAddr: 192.168.10.233:9876
+    messageModel: CLUSTERING
+auth:
+    sso:
+        anonPattern: /demo/login;/demo/swagger*/**;/demo/webjars/**;/demo/v2/**;/demo/csrf

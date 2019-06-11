@@ -1,0 +1,19 @@
+server:
+    port: 9999
+    servlet:
+        context-path: /supplychain/encrypt
+spring:
+    application:
+        name: supplychain-encrypt
+    messages:
+        basename: i18n/messages 
+    http:
+        encoding:
+         charset: UTF-8
+         enabled: true
+         force: true
+    profiles:
+        active: dev
+auth:
+    sso:
+        anonPattern: /drools/**;/kms/**;/supplychain/encrypt/login;/supplychain/encrypt/swagger*/**;/supplychain/encrypto/webjars/**;/supplychain/encrypt/v2/**;/supplychain/encrypt/csrf
