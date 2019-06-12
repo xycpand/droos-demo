@@ -9,6 +9,7 @@
  <url>http://maven.apache.org</url>
    <properties>
         <drools.version>7.18.0.Final</drools.version>
+         <java.version>1.8</java.version>
     </properties>
 	<dependencies>
 		<dependency>
